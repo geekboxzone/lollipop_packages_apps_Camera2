@@ -1200,6 +1200,11 @@ public class CameraActivity extends Activity
         updateStorageSpaceAndHint(null);
         ContentResolver cr = getContentResolver();
         String mimeType = cr.getType(uri);
+		Log.v(TAG,"===============NULL pointer debug===================");
+		if(mimeType == null) {
+			Log.e(TAG, "Can't find video data in content resolver:" + uri);
+			return;
+		}
         LocalData newData = null;
         if (LocalDataUtil.isMimeTypeVideo(mimeType)) {
             sendBroadcast(new Intent(CameraUtil.ACTION_NEW_VIDEO, uri));
