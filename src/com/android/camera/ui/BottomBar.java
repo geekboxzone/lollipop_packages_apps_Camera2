@@ -440,7 +440,7 @@ public class BottomBar extends FrameLayout {
      * Animates bar to a single stop button
      */
     public void animateToVideoStop(int resId) {
-        if (mOverLayBottomBar && mAnimatedCircleDrawable != null) {
+       /* if (mOverLayBottomBar && mAnimatedCircleDrawable != null) {
             mAnimatedCircleDrawable.animateToSmallRadius();
             mDrawCircle = true;
         }
@@ -450,6 +450,8 @@ public class BottomBar extends FrameLayout {
                 getResources().getDrawable(resId));
         mShutterButton.setImageDrawable(transitionDrawable);
         transitionDrawable.startTransition(CIRCLE_ANIM_DURATION_MS);
+       */
+        mShutterButton.setImageResource(resId);
     }
 
     /**
