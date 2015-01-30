@@ -291,7 +291,7 @@ public class BottomBar extends FrameLayout {
             setBackgroundAlpha(mBackgroundAlphaOverlay);
             setButtonImageLevels(1);
         } else {
-            setBackgroundAlpha(mBackgroundAlphaDefault);
+            setBackgroundAlpha(mBackgroundAlphaOverlay);
             setButtonImageLevels(0);
         }
     }
