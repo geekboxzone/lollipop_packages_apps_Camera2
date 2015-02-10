@@ -1271,7 +1271,7 @@ public class CameraActivity extends Activity
 
     private void removeData(int dataID) {
         mDataAdapter.removeData(dataID);
-        if (mDataAdapter.getTotalNumber() > 1) {
+        if (mDataAdapter.getTotalNumber() >= 1) {
             showUndoDeletionBar();
         } else {
             // If camera preview is the only view left in filmstrip,
