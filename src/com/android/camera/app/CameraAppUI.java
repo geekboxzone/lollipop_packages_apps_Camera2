@@ -1908,7 +1908,7 @@ public class CameraAppUI implements ModeListView.ModeSwitchListener,
         } else {
             if (hardwareSpec.isHdrPlusSupported()) {
                 if (bottomBarSpec.enableHdr && Keys.isCameraBackFacing(settingsManager,
-                                                                       mController.getModuleScope())) {
+                                                                        SettingsManager.SCOPE_GLOBAL)) {
                     buttonManager.initializeButton(ButtonManager.BUTTON_HDR_PLUS,
                             bottomBarSpec.hdrCallback);
                 } else {
@@ -1916,7 +1916,7 @@ public class CameraAppUI implements ModeListView.ModeSwitchListener,
                 }
             } else if (hardwareSpec.isHdrSupported()) {
                 if (bottomBarSpec.enableHdr && Keys.isCameraBackFacing(settingsManager,
-                                                                       mController.getModuleScope())) {
+                                                                       SettingsManager.SCOPE_GLOBAL)) {
                     buttonManager.initializeButton(ButtonManager.BUTTON_HDR,
                             bottomBarSpec.hdrCallback);
                 } else {
