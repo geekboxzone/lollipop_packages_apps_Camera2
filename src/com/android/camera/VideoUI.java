@@ -38,6 +38,7 @@ import com.android.ex.camera2.portability.CameraCapabilities;
 import com.android.ex.camera2.portability.CameraSettings;
 
 import java.util.List;
+import com.android.camera.util.CameraUtil;
 
 public class VideoUI implements PreviewStatusListener {
     private static final Log.Tag TAG = new Log.Tag("VideoUI");
@@ -153,7 +154,14 @@ public class VideoUI implements PreviewStatusListener {
                 mLabelsLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
             }
         }
-        mRecordingTimeRect.setOrientation(0, animation);
+        orientation =  CameraUtil.getDisplayRotation(mActivity);
+  //      android.util.Log.w("hjc","=====setOrientationIndicator=== orientation:"+orientation+" animation:"+animation);
+        if (orientation==90)
+          orientation = 0;
+        else if (orientation==270){
+          orientation = 180;
+        }
+        mRecordingTimeRect.setOrientation(orientation, animation);
     }
 
     private void initializeMiscControls() {

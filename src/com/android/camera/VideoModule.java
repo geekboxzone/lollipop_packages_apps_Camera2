@@ -361,7 +361,7 @@ public class VideoModule extends CameraModule
         mQuickCapture = mActivity.getIntent().getBooleanExtra(EXTRA_QUICK_CAPTURE, false);
         mLocationManager = mActivity.getLocationManager();
 
-        mUI.setOrientationIndicator(0, false);
+        //mUI.setOrientationIndicator(0, false);
         setDisplayOrientation();
 
         mPendingSwitchCameraId = -1;
@@ -871,6 +871,7 @@ public class VideoModule extends CameraModule
         // Change the camera display orientation
         if (mCameraDevice != null) {
             mCameraDevice.setDisplayOrientation(mDisplayRotation);
+            mUI.setOrientationIndicator(0, false);
         }
         if (mFocusManager != null) {
             mFocusManager.setDisplayOrientation(mCameraDisplayOrientation);
