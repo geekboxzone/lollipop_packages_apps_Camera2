@@ -1230,9 +1230,9 @@ public class CameraAppUI implements ModeListView.ModeSwitchListener,
         mModeOptionsOverlay.setCaptureLayoutHelper(mCaptureLayoutHelper);
 
         mShutterButton = (ShutterButton) mCameraRootView.findViewById(R.id.shutter_button);
+        addShutterListener(this);
         addShutterListener(mController.getCurrentModuleController());
         addShutterListener(mModeOptionsOverlay);
-        addShutterListener(this);
 
         mGridLines = (GridLines) mCameraRootView.findViewById(R.id.grid_lines);
         mTextureViewHelper.addPreviewAreaSizeChangedListener(mGridLines);
