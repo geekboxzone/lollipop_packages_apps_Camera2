@@ -16,6 +16,9 @@
 
 package com.android.camera;
 
+import android.content.Context;
+import android.view.WindowManager;
+
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.SurfaceTexture;
@@ -274,7 +277,18 @@ public class VideoUI implements PreviewStatusListener {
      * @return The size of the available preview area.
      */
     public Point getPreviewScreenSize() {
-        return new Point(mRootView.getMeasuredWidth(), mRootView.getMeasuredHeight());
+	// when the CameraUI View is not painted finished, it's width or height will be zero , but we need a valid value, so we do these
+	//return new Point(mRootView.getMeasuredWidth(), mRootView.getMeasuredHeight());
+	if (mRootView.getMeasuredWidth() == 0 || mRootView.getMeasuredHeight() == 0) {
+		WindowManager wm = (WindowManager) mActivity.getApplicationContext()
+	                    .getSystemService(Context.WINDOW_SERVICE);
+		int width = wm.getDefaultDisplay().getWidth();
+	        int height = wm.getDefaultDisplay().getHeight();
+		 
+	    	return new Point(width, height);
+	} else {
+        	return new Point(mRootView.getMeasuredWidth(), mRootView.getMeasuredHeight());
+	}
     }
 
     public void onOrientationChanged(int orientation) {
