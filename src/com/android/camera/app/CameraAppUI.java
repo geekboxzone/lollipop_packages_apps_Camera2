@@ -1523,6 +1523,10 @@ public class CameraAppUI implements ModeListView.ModeSwitchListener,
         mFilmstripBottomControls.hide();
     }
 
+    public void setBottomControlsFocusable(boolean bFocusable) {
+		mFilmstripBottomControls.setControlLayoutButtonFocusable(bFocusable);
+    }
+
     /**
      * @param listener The listener for bottom controls.
      */

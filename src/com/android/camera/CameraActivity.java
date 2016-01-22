@@ -213,6 +213,7 @@ public class CameraActivity extends QuickActivity
     private FrameLayout mAboveFilmstripControlLayout;
     private FilmstripController mFilmstripController;
     private boolean mFilmstripVisible;
+    private boolean mFilmstripBottomControlsVisible = false;
     /** Whether the filmstrip fully covers the preview. */
     private boolean mFilmstripCoversPreview = false;
     private int mResultCodeForTesting;
@@ -804,11 +805,13 @@ public class CameraActivity extends QuickActivity
         mCameraAppUI.getFilmstripBottomControls().setVisible(visible);
         if (visible != mActionBar.isShowing()) {
             if (visible) {
-                mActionBar.show();
-                mCameraAppUI.showBottomControls();
+                mActionBar.show(); 
+            	   mCameraAppUI.showBottomControls();
+		   mCameraAppUI.setBottomControlsFocusable(false);
+		   mFilmstripBottomControlsVisible = false;
             } else {
                 mActionBar.hide();
-                mCameraAppUI.hideBottomControls();
+            	   mCameraAppUI.hideBottomControls();
             }
         }
         mFilmstripCoversPreview = visible;
@@ -1987,16 +1990,25 @@ public class CameraActivity extends QuickActivity
                 return true;
             }
         } else {
-            if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
+            if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && !mFilmstripBottomControlsVisible) {
                 mFilmstripController.goToNextItem();
                 return true;
-            } else if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
+            } else if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT && !mFilmstripBottomControlsVisible) {
                 boolean wentToPrevious = mFilmstripController.goToPreviousItem();
                 if (!wentToPrevious) {
                   // at beginning of filmstrip, hide and go back to preview
                   mCameraAppUI.hideFilmstrip();
+		     mFilmstripBottomControlsVisible = false;
                 }
                 return true;
+            } else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+            		mCameraAppUI.setBottomControlsFocusable(true);
+			mFilmstripBottomControlsVisible = true;
+			return true;
+            } else if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+            		mCameraAppUI.setBottomControlsFocusable(false);
+			mFilmstripBottomControlsVisible = false;
+			return true;
             }
         }
         return super.onKeyUp(keyCode, event);
